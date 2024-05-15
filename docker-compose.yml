@@ -15,6 +15,10 @@ services:
       - .env
     depends_on:
       - psql
+    networks:
+      - database
+
+  # Pg Db
   psql:
     container_name: django-db
     image: postgres:13-alpine
@@ -22,3 +26,23 @@ services:
       - ./data/postgres/data:/var/lib/postgresql/data/
     env_file:
       - .env
+    networks:
+      - database
+
+  # Pg admin
+  psql-admin:
+    container_name: django-db-admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "root@root.com"
+      PGADMIN_DEFAULT_PASSWORD: "root"
+    ports:
+      - "8081:80"
+    depends_on:
+      - psql
+    networks:
+      - database
+
+networks:
+  database:
+    driver: bridge
