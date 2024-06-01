@@ -29,10 +29,13 @@
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
+
+    <!--  Imports DuoIcons -->
+    <script src="https://unpkg.com/duo-icons@latest"></script>
+    <script>duoIcons.createIcons();</script>
   </head>
   <body>
-    {% block navbar %}{% endblock %}
-    
-    {% block main_content %}{% endblock %}
+    {% block navbar %}{% endblock navbar %}
+    {% block main_content %}{% endblock main_content %}
   </body>
 </html>
